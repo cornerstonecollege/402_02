@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  Calculater
+//  Calculator
 //
 //  Created by Hiroshi on 2/16/16.
 //  Copyright © 2016 Hiroshi. All rights reserved.
