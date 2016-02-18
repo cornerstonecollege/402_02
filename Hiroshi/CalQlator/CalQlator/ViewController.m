@@ -14,6 +14,11 @@
 
 @implementation ViewController
 
+NSString *tmp;
+NSNumber *tmpA;
+NSInteger type = 0;
+UILabel *result;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -44,9 +49,9 @@
     CGFloat defaultY = bounds.size.height - size * 4 - space * 4;
     
     // create result label
-    UILabel *result = [[UILabel alloc]init];
+    result = [[UILabel alloc]init];
     result.frame = CGRectMake(defaultX, defaultY - defaultY/2, bounds.size.width, 50);
-    result.text=@"Contact";
+    result.text=@"Type Number";
     result.font=[UIFont fontWithName:@"Helvetica" size:30 ];
     [self.view addSubview:result];
     
@@ -84,7 +89,72 @@
 
 - (void)onClick:(UIButton *)sender
 {
-    NSLog(@"%@", sender.titleLabel.text);
+    NSRange match = [sender.titleLabel.text rangeOfString:@"^[0-9]+$" options:NSRegularExpressionSearch];
+    if (match.location != NSNotFound)
+    {
+        NSNumber *num = [NSNumber numberWithInteger:[sender.titleLabel.text integerValue]];
+        if(num != 0 && tmp == nil)
+        {
+            tmp = sender.titleLabel.text;
+        }
+        else
+        {
+            tmp = [NSString stringWithFormat:@"%@%@", tmp, num];
+        }
+        result.text = tmp;
+    }
+    else if ([sender.titleLabel.text isEqual:@"+"] || [sender.titleLabel.text isEqual:@"-"] || [sender.titleLabel.text isEqual:@"*"] || [sender.titleLabel.text isEqual:@"/"])
+    {
+        tmpA = [NSNumber numberWithInteger: [tmp integerValue]];
+        tmp = nil;
+        result.text = @"";
+        if ([sender.titleLabel.text isEqual:@"+"])
+        {
+            type = 1;
+        }else if ([sender.titleLabel.text isEqual:@"-"])
+        {
+            type = 2;
+        }else if ([sender.titleLabel.text isEqual:@"*"])
+        {
+            type = 3;
+        }else if ([sender.titleLabel.text isEqual:@"/"])
+        {
+            type = 4;
+        }
+        NSLog(@"%@",tmpA);
+    }
+    else if ([sender.titleLabel.text isEqual:@"="])
+    {
+        NSNumber *resultNum;
+        NSNumber *tmpB;
+        if(!type == 0 && tmp != nil)
+        {
+            tmpB = [NSNumber numberWithInteger: [tmp integerValue]];
+            switch (type)
+            {
+                case 1:
+                    resultNum = [NSNumber numberWithFloat:([tmpA floatValue] + [tmpB floatValue])];
+                    break;
+                case 2:
+                    resultNum = [NSNumber numberWithFloat:([tmpA floatValue] - [tmpB floatValue])];
+                    break;
+                case 3:
+                    resultNum = [NSNumber numberWithFloat:([tmpA floatValue] * [tmpB floatValue])];
+                    break;
+                case 4:
+                    resultNum = [NSNumber numberWithFloat:([tmpA floatValue] / [tmpB floatValue])];
+                    break;
+            }
+            result.text = [NSString stringWithFormat:@"%@", resultNum];
+            tmp = [NSString stringWithFormat:@"%@", resultNum];
+        }
+    }
+    else if ([sender.titleLabel.text isEqual:@"C"])
+    {
+        type = 0;
+        tmp = nil;
+        result.text = @"Type Number";
+    }
 }
 
 - (void)didReceiveMemoryWarning
