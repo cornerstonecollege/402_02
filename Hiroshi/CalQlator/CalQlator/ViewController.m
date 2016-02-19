@@ -93,11 +93,11 @@ UILabel *result;
     if (match.location != NSNotFound)
     {
         NSNumber *num = [NSNumber numberWithInteger:[sender.titleLabel.text integerValue]];
-        if(num != 0 && tmp == nil)
+        if(![num isEqual:@(0)])
         {
             tmp = sender.titleLabel.text;
         }
-        else
+        else if(tmp != nil)
         {
             tmp = [NSString stringWithFormat:@"%@%@", tmp, num];
         }
