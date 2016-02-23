@@ -21,17 +21,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self createCircle:CGRectMake(self.view.center.x - 50, self.view.center.y - 50, 100, 100)];
+    
+    [self createButton];
+}
+
+// create circle
+- (void)createCircle:(CGRect)position
+{
     self.circleArr = [NSMutableArray array];
     
-    HIROCircle *circle = [[HIROCircle alloc] initWithFrame:CGRectMake(self.view.center.x - 50, self.view.center.y - 50, 100, 100)];
+    HIROCircle *circle = [[HIROCircle alloc] initWithFrame:position];
     circle.delegate = self;
     
     [self.view addSubview:circle];
-
+    
     __weak HIROCircle *weakCircle = circle;
     [self.circleArr addObject:weakCircle];
-    
-    [self createButton];
 }
 
 // create button
@@ -45,6 +51,8 @@
     button.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:238.0/255.0 blue:67.0/255.0 alpha:1.0];
     button.titleLabel.font = [UIFont systemFontOfSize:30.0];
     [button setTitle:@"Add" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:button];
     
 }
@@ -69,6 +77,12 @@
     }
 }
 
+- (void)onClick:(UIButton *)sender
+{
+    CGFloat xRandom = arc4random_uniform(self.view.frame.size.width + 1);
+    CGFloat yRandom = arc4random_uniform(self.view.frame.size.height + 1);
+    [self createCircle:CGRectMake(xRandom -50, yRandom  - 50, 100, 100)];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
