@@ -1,13 +1,12 @@
 //
 //  AppDelegate.m
-//  MovingMultipleCircles
+//  Tab
 //
-//  Created by CICCC1 on 2016-02-19.
-//  Copyright © 2016 Ideia do Luiz. All rights reserved.
+//  Created by Hiroshi on 2/22/16.
+//  Copyright © 2016 Hiroshi. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "CICCCCircle.h"
 
 @interface AppDelegate ()
 

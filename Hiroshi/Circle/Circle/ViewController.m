@@ -50,6 +50,7 @@
     button.frame = CGRectMake(bounds.size.width * 0.05, bounds.size.height * 0.05, 100, 100);
     button.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:238.0/255.0 blue:67.0/255.0 alpha:1.0];
     button.titleLabel.font = [UIFont systemFontOfSize:30.0];
+    button.layer.cornerRadius = 50;
     [button setTitle:@"Add" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     

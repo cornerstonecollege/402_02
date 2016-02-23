@@ -306,6 +306,7 @@
 				68FE3D101C77DD2000B681A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
