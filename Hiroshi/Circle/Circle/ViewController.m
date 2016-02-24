@@ -55,7 +55,6 @@
     [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:button];
-    
 }
 
 - (void)circleMoved:(id)sender andTouch:(UITouch *)touch
