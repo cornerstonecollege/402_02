@@ -68,15 +68,15 @@
 				68FC00EA1C7FCAA300ABDAE9 /* AppDelegate.m */,
 				68FC00EC1C7FCAA300ABDAE9 /* ViewController.h */,
 				68FC00ED1C7FCAA300ABDAE9 /* ViewController.m */,
+				68FC00FD1C7FD0BE00ABDAE9 /* HIROStudent.h */,
+				68FC00FE1C7FD0BE00ABDAE9 /* HIROStudent.m */,
+				68FC01001C7FD8D100ABDAE9 /* DetailViewController.h */,
+				68FC01011C7FD8D100ABDAE9 /* DetailViewController.m */,
 				68FC00EF1C7FCAA300ABDAE9 /* Main.storyboard */,
 				68FC00F21C7FCAA300ABDAE9 /* Assets.xcassets */,
 				68FC00F41C7FCAA300ABDAE9 /* LaunchScreen.storyboard */,
 				68FC00F71C7FCAA300ABDAE9 /* Info.plist */,
 				68FC00E61C7FCAA300ABDAE9 /* Supporting Files */,
-				68FC00FD1C7FD0BE00ABDAE9 /* HIROStudent.h */,
-				68FC00FE1C7FD0BE00ABDAE9 /* HIROStudent.m */,
-				68FC01001C7FD8D100ABDAE9 /* DetailViewController.h */,
-				68FC01011C7FD8D100ABDAE9 /* DetailViewController.m */,
 			);
 			path = ClassTable;
 			sourceTree = "<group>";
@@ -312,6 +312,7 @@
 				68FC00FC1C7FCAA300ABDAE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
