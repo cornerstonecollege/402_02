@@ -27,7 +27,7 @@
     {
         _name = name;
         _age = age;
-        grade = grade;
+        _grade = grade;
     }
     
     return self;
