@@ -15,6 +15,7 @@
 @implementation ViewController
 
 UILabel *result;
+UIButton *button;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,6 +28,14 @@ UILabel *result;
 - (void)update
 {
     NSLog(@".");
+    int random = arc4random_uniform(16) + 1;
+    UIImage *btnImage = [UIImage imageNamed:@"blueBalloon.png"];
+    
+    button.tag = random;
+    
+    [button setImage:btnImage forState:UIControlStateNormal];
+    button.showsTouchWhenHighlighted = YES;
+
 }
 
 - (void)createScreen
@@ -70,15 +79,12 @@ UILabel *result;
 
 - (void)createButtonWithTitle:(NSString *)title frame:(CGRect)frame andBackgroundColor:(UIColor *)color
 {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button = [UIButton buttonWithType:UIButtonTypeSystem];
     button.frame = frame;
     button.backgroundColor = color;
-    button.titleLabel.font = [UIFont systemFontOfSize:20.0];
-    [button setTitle:title forState:UIControlStateNormal];
-    
-    UIImage *btnImage = [UIImage imageNamed:@"blueBalloon.png"];
-    [button setImage:btnImage forState:UIControlStateNormal];
-    button.showsTouchWhenHighlighted = YES;
+    //button.titleLabel.font = [UIFont systemFontOfSize:20.0];
+    //[button setTitle:title forState:UIControlStateNormal];
+    button.tag = [title integerValue];
     
     // UIControlEventTouchUpInside : if user press the button, the event will be implemented
     //[button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
