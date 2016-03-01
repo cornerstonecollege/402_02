@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="8l0-Xs-aQY">
+                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8l0-Xs-aQY" secondAttribute="height" multiplier="1:1" id="USp-xu-8Sa"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="2rF-fF-Bmx">
+                                <rect key="frame" x="275" y="200" width="50" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2rF-fF-Bmx" secondAttribute="height" multiplier="1:4" id="geW-P3-IPT"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2rF-fF-Bmx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="180" id="2B0-xz-OUL"/>
+                            <constraint firstItem="8l0-Xs-aQY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bJI-cK-gZt"/>
+                            <constraint firstItem="2rF-fF-Bmx" firstAttribute="centerX" secondItem="8l0-Xs-aQY" secondAttribute="centerX" id="dgb-hO-dvL"/>
+                            <constraint firstItem="8l0-Xs-aQY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ur3-p9-azY"/>
+                            <constraint firstItem="8l0-Xs-aQY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="130" id="xhH-7x-gZZ"/>
+                            <constraint firstItem="2rF-fF-Bmx" firstAttribute="centerY" secondItem="8l0-Xs-aQY" secondAttribute="centerY" id="yl0-RZ-Xag"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imgArrow" destination="2rF-fF-Bmx" id="2C1-ai-JVo"/>
+                        <outlet property="imgCircle" destination="8l0-Xs-aQY" id="AeP-fa-1j0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="375" y="269"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow" width="122" height="402"/>
+        <image name="circle" width="600" height="600"/>
+    </resources>
+</document>
