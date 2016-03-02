@@ -15,10 +15,12 @@
 @implementation ViewController
 
 UILabel *result;
-UIButton *button;
+NSMutableArray *arrButton;
+int randNum;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    arrButton = [NSMutableArray array];
     
     [self createScreen];
     
@@ -28,14 +30,17 @@ UIButton *button;
 - (void)update
 {
     NSLog(@".");
-    int random = arc4random_uniform(16) + 1;
+    if(randNum >= 0)
+    {
+        [arrButton[randNum] setImage:nil forState:UIControlStateNormal];
+    }
+    
+    randNum = arc4random_uniform(16);
     UIImage *btnImage = [UIImage imageNamed:@"blueBalloon.png"];
     
-    button.tag = random;
-    
-    [button setImage:btnImage forState:UIControlStateNormal];
-    button.showsTouchWhenHighlighted = YES;
-
+    //NSArray *arrRow = [dicNumber objectForKey:[NSNumber numberWithInt:random / 4]];
+    [arrButton[randNum] setImage:btnImage forState:UIControlStateNormal];
+    //arrButton[random].showsTouchWhenHighlighted = YES;
 }
 
 - (void)createScreen
@@ -72,19 +77,22 @@ UIButton *button;
         {
             UIColor *color = [UIColor colorWithRed:232.0/255.0 green:233.0/255.0 blue:219.0/255.0 alpha:1.0];
             
-            [self createButtonWithTitle:arrNumber[colum] frame:CGRectMake(sizeX * colum + space * colum, yPos, sizeX, sizeY) andBackgroundColor:color];
+            [self createButtonWithTitle:arrNumber[colum] frame:CGRectMake(sizeX * colum + space * colum, yPos, sizeX, sizeY) backgroundColor:color andNum:row*4 + colum];
         }
     }
 }
 
-- (void)createButtonWithTitle:(NSString *)title frame:(CGRect)frame andBackgroundColor:(UIColor *)color
+- (void)createButtonWithTitle:(NSString *)title frame:(CGRect)frame backgroundColor:(UIColor *)color andNum:(int)num
 {
-    button = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     button.frame = frame;
     button.backgroundColor = color;
     //button.titleLabel.font = [UIFont systemFontOfSize:20.0];
     //[button setTitle:title forState:UIControlStateNormal];
-    button.tag = [title integerValue];
+    //button.tag = [title integerValue];
+    
+    [arrButton addObject:button];
+    
     
     // UIControlEventTouchUpInside : if user press the button, the event will be implemented
     //[button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
