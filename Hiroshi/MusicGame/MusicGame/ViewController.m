@@ -10,37 +10,52 @@
 
 @interface ViewController ()
 
+@property (nonatomic) UIImageView *lifeImage1;
+@property (nonatomic) UIImageView *lifeImage2;
+@property (nonatomic) UIImageView *lifeImage3;
+@property (nonatomic) UIImage *btnImage;
+@property (nonatomic) UILabel *result;
+
 @end
 
 @implementation ViewController
 
-UILabel *result;
 NSMutableArray *arrButton;
-int randNum;
+int randNum, sumNum=0;
+CGFloat tm = 2.0;
+BOOL flg = false;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     arrButton = [NSMutableArray array];
     
     [self createScreen];
-    
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(update) userInfo:nil repeats:YES];
+    [self update];
 }
 
 - (void)update
 {
-    NSLog(@".");
     if(randNum >= 0)
     {
         [arrButton[randNum] setImage:nil forState:UIControlStateNormal];
     }
     
     randNum = arc4random_uniform(16);
-    UIImage *btnImage = [UIImage imageNamed:@"blueBalloon.png"];
+    int randColor = arc4random_uniform(5);
     
-    //NSArray *arrRow = [dicNumber objectForKey:[NSNumber numberWithInt:random / 4]];
-    [arrButton[randNum] setImage:btnImage forState:UIControlStateNormal];
-    //arrButton[random].showsTouchWhenHighlighted = YES;
+    if (randColor != 0)
+    {
+        _btnImage = [[UIImage imageNamed:@"yellowBalloon.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        flg = false;
+    }else
+    {
+        _btnImage = [[UIImage imageNamed:@"redBalloon.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        flg = true;
+    }
+    
+    [arrButton[randNum] setImage:_btnImage forState:UIControlStateNormal];
+    
+    [NSTimer scheduledTimerWithTimeInterval:tm target:self selector:@selector(update) userInfo:nil repeats:NO];
 }
 
 - (void)createScreen
@@ -54,17 +69,30 @@ int randNum;
     
     NSDictionary *dicNumber =
     @{
-      @0 : @[@"1", @"2", @"3", @"4"],
-      @1 : @[@"5", @"6", @"7", @"8"],
-      @2 : @[@"9", @"10", @"11", @"12"],
-      @3 : @[@"13", @"14", @"15", @"16"],
-      };
+      @0 : @[@"0", @"1", @"2", @"3"],
+      @1 : @[@"4", @"5", @"6", @"7"],
+      @2 : @[@"8", @"9", @"10", @"11"],
+      @3 : @[@"12", @"13", @"14", @"15"],
+    };
     
-    result = [[UILabel alloc]init];
-    result.frame = CGRectMake(0, 0, bounds.size.width, bounds.size.height*0.17);
-    result.text = @"RESULT";
-    result.font=[UIFont fontWithName:@"Helvetica" size:30 ];
-    [self.view addSubview:result];
+    _lifeImage1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"life"]];
+    _lifeImage1.frame = CGRectMake(bounds.size.width - bounds.size.height*0.05*3, 30, bounds.size.height*0.05, bounds.size.height*0.05);
+    [self.view addSubview:_lifeImage1];
+    
+    _lifeImage2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"life"]];
+    _lifeImage2.frame = CGRectMake(bounds.size.width - bounds.size.height*0.05*2, 30, bounds.size.height*0.05, bounds.size.height*0.05);
+    [self.view addSubview:_lifeImage2];
+    
+    _lifeImage3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"life"]];
+    _lifeImage3.frame = CGRectMake(bounds.size.width - bounds.size.height*0.05*1, 30, bounds.size.height*0.05, bounds.size.height*0.05);
+    [self.view addSubview:_lifeImage3];
+    
+    _result = [[UILabel alloc]init];
+    _result.frame = CGRectMake(0, bounds.size.height*0.07, bounds.size.width, bounds.size.height*0.12);
+    _result.text = [NSString stringWithFormat:@"%d", sumNum];
+    _result.font=[UIFont fontWithName:@"Helvetica" size:50 ];
+    _result.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:_result];
     
     // create buttons
     for (int row=0; row<dicNumber.count; row++)
@@ -75,31 +103,91 @@ int randNum;
         NSArray *arrNumber = [dicNumber objectForKey:[NSNumber numberWithInt:row]];
         for (int colum=0; colum<arrNumber.count; colum++)
         {
-            UIColor *color = [UIColor colorWithRed:232.0/255.0 green:233.0/255.0 blue:219.0/255.0 alpha:1.0];
+            //UIColor *color = [UIColor colorWithRed:232.0/255.0 green:233.0/255.0 blue:219.0/255.0 alpha:1.0];
             
-            [self createButtonWithTitle:arrNumber[colum] frame:CGRectMake(sizeX * colum + space * colum, yPos, sizeX, sizeY) backgroundColor:color andNum:row*4 + colum];
+            [self createButtonWithTitle:arrNumber[colum] frame:CGRectMake(sizeX * colum + space * colum, yPos, sizeX, sizeY) andNum:row*4 + colum];
         }
     }
+    
+    UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sky"]];
+    bgImageView.frame = bounds;
+    [self.view addSubview:bgImageView];
+    [self.view sendSubviewToBack:bgImageView];
 }
 
-- (void)createButtonWithTitle:(NSString *)title frame:(CGRect)frame backgroundColor:(UIColor *)color andNum:(int)num
+- (void)createButtonWithTitle:(NSString *)title frame:(CGRect)frame andNum:(int)num
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     button.frame = frame;
-    button.backgroundColor = color;
+    //button.backgroundColor = color;
     //button.titleLabel.font = [UIFont systemFontOfSize:20.0];
     //[button setTitle:title forState:UIControlStateNormal];
-    //button.tag = [title integerValue];
+    button.tag = [title integerValue];
     
     [arrButton addObject:button];
     
     
     // UIControlEventTouchUpInside : if user press the button, the event will be implemented
-    //[button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-    
+    [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
 }
 
+- (void)onClick:(UIButton *)sender
+{
+    UIImage *popImage = [[UIImage imageNamed:@"pop.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    if (sender.tag == randNum)
+    {
+        NSLog(@"click");
+        sumNum += 1;
+        _result.text = [NSString stringWithFormat:@"%d", sumNum];
+        [arrButton[randNum] setImage:popImage forState:UIControlStateNormal];
+        if(tm > 0.7)
+        {
+            tm -= 0.05;
+        }
+        
+        if(true)
+        {
+            NSLog(@"PASS");
+            
+            if(CGSizeEqualToSize(_lifeImage1.image.size, CGSizeZero) &&
+               CGSizeEqualToSize(_lifeImage2.image.size, CGSizeZero) &&
+               CGSizeEqualToSize(_lifeImage3.image.size, CGSizeZero))
+            {
+                [_lifeImage1 setImage:[UIImage imageNamed:@"life"]];
+            }else if(CGSizeEqualToSize(_lifeImage2.image.size, CGSizeZero) &&
+                     CGSizeEqualToSize(_lifeImage3.image.size, CGSizeZero))
+            {
+                [_lifeImage2 setImage:[UIImage imageNamed:@"life"]];
+            }else if(CGSizeEqualToSize(_lifeImage3.image.size, CGSizeZero))
+            {
+                [_lifeImage3 setImage:[UIImage imageNamed:@"life"]];
+            }
+        }
+    }
+    else
+    {
+        if(CGSizeEqualToSize(_lifeImage1.image.size, CGSizeZero) &&
+           CGSizeEqualToSize(_lifeImage2.image.size, CGSizeZero) &&
+           CGSizeEqualToSize(_lifeImage3.image.size, CGSizeZero))
+        {
+            NSLog(@"GAME OVER");
+        }else if(CGSizeEqualToSize(_lifeImage3.image.size, CGSizeZero) &&
+                 !CGSizeEqualToSize(_lifeImage2.image.size, CGSizeZero))
+        {
+            NSLog(@"1");
+            [_lifeImage2 setImage:nil];
+        }else if(CGSizeEqualToSize(_lifeImage2.image.size, CGSizeZero))
+        {
+            NSLog(@"2");
+            [_lifeImage1 setImage:nil];
+        }else
+        {
+            [_lifeImage3 setImage:nil];
+        }
+    }
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

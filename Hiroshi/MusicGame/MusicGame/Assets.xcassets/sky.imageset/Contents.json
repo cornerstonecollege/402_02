@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "blueBalloon.png",
+      "filename" : "sky.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "blueBalloon-1.png",
+      "filename" : "sky-1.jpg",
       "scale" : "2x"
     },
     {
