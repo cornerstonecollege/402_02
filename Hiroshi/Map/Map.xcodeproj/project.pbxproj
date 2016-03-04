@@ -14,6 +14,7 @@
 		680221961C87B4520091C8FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 680221951C87B4520091C8FD /* Assets.xcassets */; };
 		680221991C87B4520091C8FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 680221971C87B4520091C8FD /* LaunchScreen.storyboard */; };
 		680221A11C87B4A00091C8FD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680221A01C87B4A00091C8FD /* MapKit.framework */; };
+		6867501F1C890AE5001D2A88 /* TagImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6867501E1C890AE5001D2A88 /* TagImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		680221981C87B4520091C8FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6802219A1C87B4520091C8FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		680221A01C87B4A00091C8FD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6867501D1C890AE5001D2A88 /* TagImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagImage.h; sourceTree = "<group>"; };
+		6867501E1C890AE5001D2A88 /* TagImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,8 @@
 				6802218D1C87B4520091C8FD /* AppDelegate.m */,
 				6802218F1C87B4520091C8FD /* ViewController.h */,
 				680221901C87B4520091C8FD /* ViewController.m */,
+				6867501D1C890AE5001D2A88 /* TagImage.h */,
+				6867501E1C890AE5001D2A88 /* TagImage.m */,
 				680221921C87B4520091C8FD /* Main.storyboard */,
 				680221951C87B4520091C8FD /* Assets.xcassets */,
 				680221971C87B4520091C8FD /* LaunchScreen.storyboard */,
@@ -153,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6867501F1C890AE5001D2A88 /* TagImage.m in Sources */,
 				680221911C87B4520091C8FD /* ViewController.m in Sources */,
 				6802218E1C87B4520091C8FD /* AppDelegate.m in Sources */,
 				6802218B1C87B4520091C8FD /* main.m in Sources */,
@@ -304,6 +310,7 @@
 				6802219F1C87B4520091C8FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
