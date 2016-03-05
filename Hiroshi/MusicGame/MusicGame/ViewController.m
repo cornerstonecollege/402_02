@@ -15,15 +15,18 @@
 @property (nonatomic) UIImageView *lifeImage3;
 @property (nonatomic) UIImage *btnImage;
 @property (nonatomic) UILabel *result;
+@property (nonatomic) UIButton *retryButton;
 
 @end
 
 @implementation ViewController
 
 NSMutableArray *arrButton;
-int randNum, sumNum=0;
 CGFloat tm = 2.0;
-BOOL flg = false;
+NSTimer *timer;
+int randNum, sumNum=0;
+BOOL balloonFlg = false, gameFlg = true;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,8 +36,15 @@ BOOL flg = false;
     [self update];
 }
 
+- (void) stopTimer
+{
+    [timer invalidate];
+    timer = nil;
+}
+
 - (void)update
 {
+    
     if(randNum >= 0)
     {
         [arrButton[randNum] setImage:nil forState:UIControlStateNormal];
@@ -45,17 +55,21 @@ BOOL flg = false;
     
     if (randColor != 0)
     {
+        balloonFlg = false;
         _btnImage = [[UIImage imageNamed:@"yellowBalloon.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        flg = false;
+        
     }else
     {
+        balloonFlg = true;
         _btnImage = [[UIImage imageNamed:@"redBalloon.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        flg = true;
     }
     
     [arrButton[randNum] setImage:_btnImage forState:UIControlStateNormal];
     
-    [NSTimer scheduledTimerWithTimeInterval:tm target:self selector:@selector(update) userInfo:nil repeats:NO];
+    if (gameFlg)
+    {
+        timer = [NSTimer scheduledTimerWithTimeInterval:tm target:self selector:@selector(update) userInfo:nil repeats:NO];
+    }
 }
 
 - (void)createScreen
@@ -119,9 +133,6 @@ BOOL flg = false;
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     button.frame = frame;
-    //button.backgroundColor = color;
-    //button.titleLabel.font = [UIFont systemFontOfSize:20.0];
-    //[button setTitle:title forState:UIControlStateNormal];
     button.tag = [title integerValue];
     
     [arrButton addObject:button];
@@ -135,7 +146,7 @@ BOOL flg = false;
 - (void)onClick:(UIButton *)sender
 {
     UIImage *popImage = [[UIImage imageNamed:@"pop.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    if (sender.tag == randNum)
+    if (sender.tag == randNum && gameFlg)
     {
         NSLog(@"click");
         sumNum += 1;
@@ -145,8 +156,9 @@ BOOL flg = false;
         {
             tm -= 0.05;
         }
+        NSLog(@"%f", tm);
         
-        if(true)
+        if(balloonFlg)
         {
             NSLog(@"PASS");
             
@@ -167,11 +179,30 @@ BOOL flg = false;
     }
     else
     {
+        NSLog(@"%f", tm);
         if(CGSizeEqualToSize(_lifeImage1.image.size, CGSizeZero) &&
            CGSizeEqualToSize(_lifeImage2.image.size, CGSizeZero) &&
            CGSizeEqualToSize(_lifeImage3.image.size, CGSizeZero))
         {
             NSLog(@"GAME OVER");
+            if(gameFlg)
+            {
+                [arrButton[randNum] setImage:nil forState:UIControlStateNormal];
+                
+                [self performSelectorOnMainThread:@selector(stopTimer) withObject:nil waitUntilDone:YES];
+                _retryButton = [UIButton buttonWithType:UIButtonTypeSystem];
+                _retryButton.frame = CGRectMake(self.view.bounds.size.width/2 - self.view.bounds.size.height*0.1,
+                                                self.view.bounds.size.height/2 - self.view.bounds.size.height*0.1,
+                                                self.view.bounds.size.height*0.2,
+                                                self.view.bounds.size.height*0.2);
+                
+                UIImage *retryImage = [[UIImage imageNamed:@"retry.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+                [_retryButton setImage:retryImage forState:UIControlStateNormal];
+                [_retryButton addTarget:self action:@selector(onClickRetry:) forControlEvents:UIControlEventTouchUpInside];
+                [self.view addSubview:_retryButton];
+            }
+            gameFlg = false;
+
         }else if(CGSizeEqualToSize(_lifeImage3.image.size, CGSizeZero) &&
                  !CGSizeEqualToSize(_lifeImage2.image.size, CGSizeZero))
         {
@@ -186,7 +217,19 @@ BOOL flg = false;
             [_lifeImage3 setImage:nil];
         }
     }
-    
+}
+
+- (void)onClickRetry:(UIButton *)sender
+{
+    tm = 2.0;
+    sumNum = 0;
+    gameFlg = true;
+    _result.text = [NSString stringWithFormat:@"%d", sumNum];
+    [_lifeImage1 setImage:[UIImage imageNamed:@"life"]];
+    [_lifeImage2 setImage:[UIImage imageNamed:@"life"]];
+    [_lifeImage3 setImage:[UIImage imageNamed:@"life"]];
+    [_retryButton removeFromSuperview];
+    [self update];
 }
 
 - (void)didReceiveMemoryWarning {
