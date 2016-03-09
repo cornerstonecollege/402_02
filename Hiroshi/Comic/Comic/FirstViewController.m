@@ -49,18 +49,39 @@
         devisionView.center = CGPointMake(moveX, moveY);
     } completion:^(BOOL finished) {
         
-        UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-        [imageView1 setImage:[UIImage imageNamed:@"w1.png"]];
-        //[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"w1.png"]] ;
-        //imageView1.layer.contentsRect = CGRectMake(0, 0, 50, 50);
-        [devisionView addSubview:imageView1];
+//        UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+//        [imageView1 setImage:[UIImage imageNamed:@"w1.png"]];
+//        [devisionView addSubview:imageView1];
+//        
+//        UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(100, 0, 50, 50)];
+//        [imageView2 setImage:[UIImage imageNamed:@"w2.png"]];
+//        [devisionView addSubview:imageView2];
+//        
+//        UIImageView *imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(200, 0, 50, 50)];
+//        [imageView3 setImage:[UIImage imageNamed:@"w3.png"]];
+//        [devisionView addSubview:imageView3];
+//       
+//        UIImageView *imageView4 = [[UIImageView alloc] initWithFrame:CGRectMake(300, 0, 50, 50)];
+//        [imageView4 setImage:[UIImage imageNamed:@"w4.png"]];
+//        [devisionView addSubview:imageView4];
+//
+//        UIImageView *imageView5 = [[UIImageView alloc] initWithFrame:CGRectMake(400, 0, 50, 50)];
+//        [imageView4 setImage:[UIImage imageNamed:@"w5.png"]];
+//        [devisionView addSubview:imageView5];
         
-        UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(100, 0, 50, 50)];
-        [imageView2 setImage:[UIImage imageNamed:@"w2.png"]];
-        //[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"w2.png"]] ;
-        //imageView2.layer.contentsRect = CGRectMake(100, 0, 50, 50);
-        [devisionView addSubview:imageView2];
+        [self addImageSize:CGRectMake(0, 0, 50, 50) name:@"w1.png" andParent:devisionView];
+        [self addImageSize:CGRectMake(100, 0, 50, 50) name:@"w2.png" andParent:devisionView];
+        [self addImageSize:CGRectMake(200, 0, 50, 50) name:@"w3.png" andParent:devisionView];
+        [self addImageSize:CGRectMake(300, 0, 50, 50) name:@"w4.png" andParent:devisionView];
+        [self addImageSize:CGRectMake(400, 0, 50, 50) name:@"w5.png" andParent:devisionView];
     }];
+}
+
+- (void) addImageSize:(CGRect)size name:(NSString *)name andParent:(UIScrollView *)parent
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:size];
+    [imageView setImage:[UIImage imageNamed:name]];
+    [parent addSubview:imageView];
 }
 
 
