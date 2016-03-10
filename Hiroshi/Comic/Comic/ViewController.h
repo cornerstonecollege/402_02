@@ -10,6 +10,7 @@
 
 @interface ViewController : UITabBarController
 
+@property (nonatomic, strong) UIView *commonView;
 
 @end
 

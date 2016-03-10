@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "earth.png",
+      "filename" : "speechBubble.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "earth-1.png",
       "scale" : "2x"
     },
     {

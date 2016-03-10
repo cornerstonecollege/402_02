@@ -9,4 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SecondViewController : UIViewController
+
+- (void) tabBarClicked;
+
 @end
