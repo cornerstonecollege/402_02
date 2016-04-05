@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "CommonHelper.h"
 
 @interface ViewController ()
 
@@ -28,9 +29,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)createMainView
+- (void)createGoogleMapView
 {
     
 }
+
 
 @end

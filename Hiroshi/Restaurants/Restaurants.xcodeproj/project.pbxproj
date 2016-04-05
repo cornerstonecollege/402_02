@@ -13,6 +13,8 @@
 		686C3F451CB34A45006418E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 686C3F431CB34A45006418E7 /* Main.storyboard */; };
 		686C3F471CB34A45006418E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 686C3F461CB34A45006418E7 /* Assets.xcassets */; };
 		686C3F4A1CB34A45006418E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 686C3F481CB34A45006418E7 /* LaunchScreen.storyboard */; };
+		686C3F521CB3554D006418E7 /* Utilities in Resources */ = {isa = PBXBuildFile; fileRef = 686C3F511CB3554D006418E7 /* Utilities */; };
+		686C3F551CB355C2006418E7 /* CommonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 686C3F541CB355C2006418E7 /* CommonHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,9 @@
 		686C3F461CB34A45006418E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		686C3F491CB34A45006418E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		686C3F4B1CB34A45006418E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		686C3F511CB3554D006418E7 /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utilities; sourceTree = "<group>"; };
+		686C3F531CB355C2006418E7 /* CommonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonHelper.h; path = Utilities/CommonHelper.h; sourceTree = "<group>"; };
+		686C3F541CB355C2006418E7 /* CommonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonHelper.m; path = Utilities/CommonHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +63,7 @@
 		686C3F391CB34A45006418E7 /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
+				686C3F511CB3554D006418E7 /* Utilities */,
 				686C3F3D1CB34A45006418E7 /* AppDelegate.h */,
 				686C3F3E1CB34A45006418E7 /* AppDelegate.m */,
 				686C3F401CB34A45006418E7 /* ViewController.h */,
@@ -67,6 +73,8 @@
 				686C3F481CB34A45006418E7 /* LaunchScreen.storyboard */,
 				686C3F4B1CB34A45006418E7 /* Info.plist */,
 				686C3F3A1CB34A45006418E7 /* Supporting Files */,
+				686C3F531CB355C2006418E7 /* CommonHelper.h */,
+				686C3F541CB355C2006418E7 /* CommonHelper.m */,
 			);
 			path = Restaurants;
 			sourceTree = "<group>";
@@ -138,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				686C3F4A1CB34A45006418E7 /* LaunchScreen.storyboard in Resources */,
+				686C3F521CB3554D006418E7 /* Utilities in Resources */,
 				686C3F471CB34A45006418E7 /* Assets.xcassets in Resources */,
 				686C3F451CB34A45006418E7 /* Main.storyboard in Resources */,
 			);
@@ -152,6 +161,7 @@
 			files = (
 				686C3F421CB34A45006418E7 /* ViewController.m in Sources */,
 				686C3F3F1CB34A45006418E7 /* AppDelegate.m in Sources */,
+				686C3F551CB355C2006418E7 /* CommonHelper.m in Sources */,
 				686C3F3C1CB34A45006418E7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +311,7 @@
 				686C3F501CB34A45006418E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
