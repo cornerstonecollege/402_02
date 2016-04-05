@@ -13,6 +13,11 @@
 
 @property (nonatomic) NSArray *layoutArray;
 @property (nonatomic, weak) UIView *commonView;
+@property (nonatomic) UIView *mainView;
+@property (nonatomic) UIImageView *imgView1;
+@property (nonatomic) UIImageView *imgView2;
+@property (nonatomic) UIImageView *imgView3;
+@property (nonatomic) UIImageView *imgView4;
 
 @end
 
@@ -25,7 +30,6 @@
     
     self.commonView = ((ViewController *)self.tabBarController).commonView;
     [self.view addSubview:self.commonView];
-    self.commonView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void) tabBarClicked
@@ -97,19 +101,28 @@
 - (void)handleTap:(UITapGestureRecognizer *)recognizer  {
     UIImageView *imageView = (UIImageView *)recognizer.view;
     
-    UIView *mainLayout = [[UIView alloc] initWithFrame:CGRectMake(self.commonView.bounds.size.width*0.1/2,
+    _mainView = [[UIView alloc] initWithFrame:CGRectMake(self.commonView.bounds.size.width*0.01,
                                                                   self.commonView.bounds.size.height*0.15,
-                                                                  self.commonView.bounds.size.width*0.9,
-                                                                  self.commonView.bounds.size.width*0.9)];
-    mainLayout.backgroundColor = [UIColor colorWithRed:231.0f/255.0f green:231.0f/255.0f blue:230.0f/255.0f alpha:1.0];
-    [self.commonView addSubview:mainLayout];
+                                                                  self.commonView.bounds.size.width*0.98,
+                                                                  self.commonView.bounds.size.width*0.98)];
+    _mainView.backgroundColor = [UIColor colorWithRed:231.0f/255.0f green:231.0f/255.0f blue:230.0f/255.0f alpha:1.0];
+    [self.commonView addSubview:_mainView];
     
-    mainLayout.center = CGPointMake(mainLayout.center.x ,(self.commonView.frame.size.height - (self.commonView.bounds.size.height*0.15 + self.tabBarController.tabBar.frame.size.height)) / 2);
+    _mainView.center = CGPointMake(_mainView.center.x ,(self.commonView.frame.size.height - (self.commonView.bounds.size.height*0.15 + self.tabBarController.tabBar.frame.size.height)) / 2);
     
-    switch([imageView tag])
+    [self createLayouts:_mainView andType:[imageView tag]];
+}
+
+//- (void)
+
+- (void)createLayouts:(UIView*)parent andType:(NSInteger)number
+{
+    switch(number)
     {
         case 1:
-            NSLog(@"TEST");
+            _imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, parent.bounds.size.width, parent.bounds.size.height/2)];
+            _imgView1.backgroundColor = [UIColor colorWithRed:251.0f/255.0f green:238.0f/255.0f blue:202.0f/255.0f alpha:1.0];
+            [parent addSubview:_imgView1];
             break;
         case 2:
             NSLog(@"TEST2");
@@ -124,9 +137,8 @@
             NSLog(@"TEST5");
             break;
     }
-}
 
-//- (void)
+}
 
 
 - (void)didReceiveMemoryWarning

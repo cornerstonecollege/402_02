@@ -23,7 +23,6 @@
     
     self.commonView = ((ViewController *)self.tabBarController).commonView;
     [self.view addSubview:self.commonView];
-    self.commonView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void) tabBarClicked

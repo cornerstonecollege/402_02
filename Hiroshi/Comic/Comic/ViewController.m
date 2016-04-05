@@ -23,6 +23,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.commonView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    imageView.image = [UIImage imageNamed:@"backGround"];
+    [self.commonView addSubview:imageView];
+    
     [self createTab];
 }
 
